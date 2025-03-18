@@ -1,6 +1,6 @@
-def steps(n):
+def steps(num_l):
     l_step = [1]
-    length = len(n)
+    length = len(num_l)
     k = 0
 
     while True:
@@ -12,17 +12,15 @@ def steps(n):
     return l_step[::-1]
 
 
-def Shell(n):
-    l_steps = steps(n)
+def Shell(num_l):
+    l_steps = steps(num_l)
     for step in l_steps:
-        for i in range(step, len(n)):
-            number = n[i]
+        for i in range(step, len(num_l)):
+            number = num_l[i]
             j = i
-            while j >= step and n[j - step] > number:
-                n[j] = n[j - step]
+            while j >= step and num_l[j - step] > number:
+                num_l[j] = num_l[j - step]
                 j -= step
-            n[j] = number
+            num_l[j] = number
 
-    return n
-
-print(Shell([63, 4, 3, 2, 1, 65, 1, 123, 17, 1234, 74]))
+    return num_l
