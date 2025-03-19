@@ -15,15 +15,15 @@ def main():
                 for name, arr in el.items():
                     if algorithm == "insertion sort":
                         sorted_array = insertion_sort(arr.copy())
-                        print(f"\nArray before sorting: {arr}.\nType of input array: {name}.\nArray after using Insertion sort: {sorted_array}")
+                        print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Insertion sort: {sorted_array}")
                         quit_function()  
                     elif algorithm == "selection sort":
                         sorted_array = selection_sort(arr.copy())
-                        print(f"\nArray before sorting: {arr}.\nType of input array: {name}.\nArray after using Selection sort: {sorted_array}")
+                        print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Selection sort: {sorted_array}")
                         quit_function()
                     elif algorithm == "shell sort":
                         sorted_array = shell_sort(arr.copy())
-                        print(f"\nArray before sorting: {arr}.\nType of input array: {name}.\nArray after using Shell sort: {sorted_array}")
+                        print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Shell sort: {sorted_array}")
                         quit_function()
         else:
             print("Invalid input. Try again.")
