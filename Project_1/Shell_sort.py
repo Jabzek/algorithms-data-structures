@@ -12,7 +12,7 @@ def steps(num_l):
     return l_step[::-1]
 
 
-def Shell(num_l):
+def shell_sort(num_l):
     l_steps = steps(num_l)
     for step in l_steps:
         for i in range(step, len(num_l)):

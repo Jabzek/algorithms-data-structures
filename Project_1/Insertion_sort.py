@@ -1,4 +1,4 @@
-def insertion(num_l):
+def insertion_sort(num_l):
     for el in range(1, len(num_l)):
         number = num_l[el]
         idx = el - 1

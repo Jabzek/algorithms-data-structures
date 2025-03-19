@@ -1,4 +1,4 @@
-def selection(num_l):
+def selection_sort(num_l):
     for el in range(len(num_l) - 1):
         min_idx = el
         for i in range(min_idx + 1, len(num_l)):
