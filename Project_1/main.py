@@ -41,7 +41,7 @@ def main():
                     quit_function()
 
                 elif algorithm == "quicksortrandompivot":
-                    sorted_array = quick_sort_left_pivot(arr.copy(), 0, len(arr) - 1)
+                    sorted_array = quick_sort_random_pivot(arr.copy(), 0, len(arr) - 1)
                     print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Quick sort: {sorted_array}")
                     quit_function()
 
