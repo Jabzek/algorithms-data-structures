@@ -12,41 +12,44 @@ def main():
     while True:
         algorithm = input().lower().replace(" ", "")
         dict_arrays = generate_all_arrays(sizes)
-        
-        for el in dict_arrays.values():
-            for name, arr in el.items():
-                if algorithm == "insertionsort":
-                    sorted_array = insertion_sort(arr.copy())
-                    print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Insertion sort: {sorted_array}")
-                    quit_function()  
-                
-                elif algorithm == "selectionsort":
-                    sorted_array = selection_sort(arr.copy())
-                    print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Selection sort: {sorted_array}")
-                    quit_function()
-                
-                elif algorithm == "shellsort":
-                    sorted_array = shell_sort(arr.copy())
-                    print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Shell sort: {sorted_array}")
-                    quit_function()
-                
-                elif algorithm == "heapsort":
-                    sorted_array = heap_sort(arr.copy())
-                    print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Heap sort: {sorted_array}")
-                    quit_function()
+        l = ["insertionsort", "selectionsort", "shellsort", "heapsort", "quicksortleftpivot", "quicksortrandompivot"]
 
-                elif algorithm == "quicksortleftpivot":
-                    sorted_array = quick_sort_left_pivot(arr.copy(), 0, len(arr) - 1)
-                    print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Quick sort: {sorted_array}")
-                    quit_function()
+        if algorithm in l:
+            for el in dict_arrays.values():
+                for name, arr in el.items():
+                    if algorithm == "insertionsort":
+                        sorted_array = insertion_sort(arr.copy())
+                        print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Insertion sort: {sorted_array}")
+                        quit_function()  
+                        
+                    elif algorithm == "selectionsort":
+                        sorted_array = selection_sort(arr.copy())
+                        print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Selection sort: {sorted_array}")
+                        quit_function()
+                    
+                    elif algorithm == "shellsort":
+                        sorted_array = shell_sort(arr.copy())
+                        print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Shell sort: {sorted_array}")
+                        quit_function()
+                    
+                    elif algorithm == "heapsort":
+                        sorted_array = heap_sort(arr.copy())
+                        print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Heap sort: {sorted_array}")
+                        quit_function()
 
-                elif algorithm == "quicksortrandompivot":
-                    sorted_array = quick_sort_random_pivot(arr.copy(), 0, len(arr) - 1)
-                    print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Quick sort: {sorted_array}")
-                    quit_function()
+                    elif algorithm == "quicksortleftpivot":
+                        sorted_array = quick_sort_left_pivot(arr.copy(), 0, len(arr) - 1)
+                        print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Quick sort: {sorted_array}")
+                        quit_function()
 
-                else:
-                    print("Invalid input. Try again.")
+                    elif algorithm == "quicksortrandompivot":
+                        sorted_array = quick_sort_random_pivot(arr.copy(), 0, len(arr) - 1)
+                        print(f"\nArray before sorting: {arr}\nType of input array: {name}\nArray after using Quick sort: {sorted_array}")
+                        quit_function()
+            break
+        else:
+            print("Invalid input. Try again.")
+                    
 
 def quit_function():
     print("Do you want to quit? (yes/no)")
