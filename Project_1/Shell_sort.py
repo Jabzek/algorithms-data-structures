@@ -22,5 +22,4 @@ def shell_sort(num_l):
                 num_l[j] = num_l[j - step]
                 j -= step
             num_l[j] = number
-
     return num_l
