@@ -9,7 +9,8 @@ def steps(num_l):
             break
         l_step.append(step)
         k += 1
-    return l_step[::-1]
+    l_step.reverse()
+    return l_step
 
 
 def shell_sort(num_l):
