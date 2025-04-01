@@ -33,6 +33,6 @@ def generate_all_arrays(sizes):
         idx += 1
     return arrays
 
-sizes = [2**x for x in range(2, 20)]
+sizes = [2**x for x in range(2, 17)]
 
 

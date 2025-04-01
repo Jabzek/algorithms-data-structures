@@ -9,9 +9,10 @@ from quick_sort_random_pivot import quick_sort_random_pivot
 def main():
     print("Enter a name of algorithm you want to perform. Choose from the following:\n1. Insertion Sort\n2. Selection Sort\n3. Shell Sort\n4. Heap Sort\n5. Quick Sort left pivot\n6. Quick Sort random pivot")
     
+    dict_arrays = generate_all_arrays(sizes)
+
     while True:
         algorithm = input().lower().replace(" ", "")
-        dict_arrays = generate_all_arrays(sizes)
         l = ["insertionsort", "selectionsort", "shellsort", "heapsort", "quicksortleftpivot", "quicksortrandompivot"]
 
         if algorithm in l:

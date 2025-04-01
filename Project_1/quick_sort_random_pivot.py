@@ -1,4 +1,6 @@
 import random
+import sys
+sys.setrecursionlimit(100000) 
 
 def quick_sort_random_pivot(arr, l, r):
     if l < r:
