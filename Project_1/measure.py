@@ -17,7 +17,7 @@ def creating_file(res):
     headers = ["Algorithm", "Array Type", "Array Size", "Time (seconds)"]
     
     with open(filename, mode="w", newline="") as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file) #create writer object which give opportunity to save data in the csv file
         writer.writerow(headers)
         writer.writerows(res)
             
