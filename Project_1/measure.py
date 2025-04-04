@@ -1,6 +1,5 @@
 import csv
 import os
-import math
 from time import time
 from generate import generate_all_arrays, sizes
 from Insertion_sort import insertion_sort
@@ -20,10 +19,7 @@ def creating_file(res):
         writer = csv.writer(file) #create writer object which give opportunity to save data in the csv file
         writer.writerow(headers)
         writer.writerows(res)
-            
-def to_superscript(num):
-    superscript_map = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
-    return str(num).translate(superscript_map)
+
 
 
 res = []
@@ -42,8 +38,6 @@ for name, algorithm in algorithms.items():
     for array_dict in arrays.values():
         for typ, array in array_dict.items():
             len_arr = len(array)
-            size = int(math.log2(len_arr))
-            arr_size = f"2{to_superscript(size)}"
             
             if name == "Quick_sort_left_pivot" or name == "Quick_sort_random_pivot":
                 start_time = time()
@@ -55,7 +49,7 @@ for name, algorithm in algorithms.items():
                 end_time = time()
 
             elapsed_time = end_time - start_time
-            res.append((name, typ, arr_size, elapsed_time))
+            res.append((name, typ, len_arr, elapsed_time))
 
 creating_file(res)
 
