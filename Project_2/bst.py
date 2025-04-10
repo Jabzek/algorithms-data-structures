@@ -1,5 +1,6 @@
 from node import Node
 
+
 def insert(root, val):
     if root is None:
         return Node(val)     
