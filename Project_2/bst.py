@@ -30,5 +30,3 @@ def bst_create(n):
     h = height(root)
     print("Wysokość drzewa BST:", h)
 
-n = list(map(int, input().split()))
-bst_create(n)
