@@ -1,82 +1,47 @@
 from node import Node
 import math
 
-def get_height(node):
-    return node.height if node else 0
 
-def update_height(node):
-    if node:
-        node.height = 1 + max(get_height(node.left), get_height(node.right))
+def minimum_val(root):
+    if root is None:
+        return None
 
-def get_balance(node):
-    return get_height(node.left) - get_height(node.right) if node else 0
+    if root.left is None:
+        return root.val
+    
+    return minimum_val(root.left)
 
-def right_rotate(y):
-    x = y.left
-    T2 = x.right
-    x.right = y
-    y.left = T2
-    update_height(y)
-    update_height(x)
-    return x
-
-def left_rotate(x):
-    y = x.right
-    T2 = y.left
-    y.left = x
-    x.right = T2
-    update_height(x)
-    update_height(y)
-    return y
-
-def get_min_node(root):
-    current = root
-    while current.left:
-        current = current.left
-    return current
-
-def delete_node(root, key, is_avl=False):
+def delete_node(root, val, is_avl):
     if not root:
         return root
-    if key < root.key:
-        root.left = delete_node(root.left, key, is_avl)
-    elif key > root.key:
-        root.right = delete_node(root.right, key, is_avl)
+    
+    if val < root.val:
+        root.left = delete_node(root.left, val, is_avl)
+    elif val > root.val:
+        root.right = delete_node(root.right, val, is_avl)
     else:
         if not root.left:
             return root.right
         elif not root.right:
             return root.left
-        min_larger_node = get_min_node(root.right)
-        root.key = min_larger_node.key
-        root.right = delete_node(root.right, min_larger_node.key, is_avl)
+        min_larger_node = minimum_val(root.right)
+        root.val = min_larger_node
+        root.right = delete_node(root.right, min_larger_node, is_avl)
 
     if is_avl:
-        update_height(root)
-        balance = get_balance(root)
-
-        if balance > 1 and get_balance(root.left) >= 0:
-            return right_rotate(root)
-        if balance > 1 and get_balance(root.left) < 0:
-            root.left = left_rotate(root.left)
-            return right_rotate(root)
-        if balance < -1 and get_balance(root.right) <= 0:
-            return left_rotate(root)
-        if balance < -1 and get_balance(root.right) > 0:
-            root.right = right_rotate(root.right)
-            return left_rotate(root)
+        root = dsw_balance(root)
 
     return root
 
 def in_order(root):
     if root:
         in_order(root.left)
-        print(root.key, end=' ')
+        print(root.val, end=' ')
         in_order(root.right)
 
 def pre_order(root):
     if root:
-        print(root.key, end=' ')
+        print(root.val, end=' ')
         pre_order(root.left)
         pre_order(root.right)
 
@@ -84,23 +49,14 @@ def post_order(root):
     if root:
         post_order(root.left)
         post_order(root.right)
-        print(root.key, end=' ')
+        print(root.val, end=' ')
 
-def find_min_max(root):
-    min_node = root
-    while min_node.left:
-        min_node = min_node.left
-    max_node = root
-    while max_node.right:
-        max_node = max_node.right
-    print("Najmniejszy element w drzewie: ", min_node.key)
-    print("Największy element w drzewie: ", max_node.key)
 
 def delete_whole_tree_post_order(root):
     if root:
         delete_whole_tree_post_order(root.left)
         delete_whole_tree_post_order(root.right)
-        print("Usuwam węzeł:", root.key)
+        print("Usuwam węzeł:", root.val)
         root.left = None
         root.right = None
     return None
@@ -109,6 +65,7 @@ def tree_to_vine(root):
     tail = dummy = Node(None)
     dummy.right = root
     rest = root
+    
     while rest:
         if rest.left:
             temp = rest.left
@@ -124,6 +81,7 @@ def tree_to_vine(root):
 def compress(root, count):
     scanner = dummy = Node(None)
     dummy.right = root
+    
     for _ in range(count):
         child = scanner.right
         if child and child.right:
@@ -137,15 +95,47 @@ def compress(root, count):
     return dummy.right
 
 def dsw_balance(root):
-    root = tree_to_vine(root)
+    vine_root = tree_to_vine(root)
     size = 0
-    temp = root
+    temp = vine_root
+    
     while temp:
         size += 1
         temp = temp.right
     m = 2 ** int(math.log2(size + 1)) - 1
-    root = compress(root, size - m)
+    balanced_root = compress(vine_root, size - m)
+    
     while m > 1:
         m //= 2
-        root = compress(root, m)
-    return root
+        balanced_root = compress(balanced_root, m)
+    return balanced_root
+
+def height(root):
+    if root is None:
+        return -1       
+         
+    return 1 + max(height(root.left), height(root.right))  
+
+
+def maximum(root, l):
+    if root is None:
+        return None
+    
+    l.append(root.val)
+    
+    if root.right is None:
+        return root.val, l
+    
+    return maximum(root.right, l)
+
+
+def minimum(root, l):
+    if root is None:
+        return None
+    
+    l.append(root.val)
+
+    if root.left is None:
+        return root.val, l
+    
+    return minimum(root.left, l)

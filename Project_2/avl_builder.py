@@ -1,11 +1,9 @@
 from node import Node
-from tree_ops import update_height
+
 
 def build_avl_tree(data):
-    """
-    Tworzy zrównoważone drzewo AVL z posortowanej listy danych.
-    Zwraca korzeń drzewa AVL.
-    """
+    data.sort()
+
     if not data:
         return None
 
@@ -14,6 +12,4 @@ def build_avl_tree(data):
     root.left = build_avl_tree(data[:mid])
     root.right = build_avl_tree(data[mid+1:])
     
-    update_height(root)  # AVL potrzebuje wysokości
-
     return root
