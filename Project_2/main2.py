@@ -11,6 +11,16 @@ def input_numbers():
             print("Błędne dane. Proszę wprowadzić liczby całkowite.")
     return n   
 
+def bst_function(n):
+    print()
+    print("Wybrano drzewo BST\n")
+    
+
+
+
+
+
+
 def main():
     print("Wybierz sposób wprowadzenia danych:")
     print("1. Wprowadź liczby z klawiatury")
@@ -33,7 +43,7 @@ def main():
     while True:
         tree = input("Wybór: ").lower()
         if tree == "1" or tree == "bst":
-            bst_create(n)
+            bst_function(n)
             break
         elif tree == "2" or tree == "avl":
             break

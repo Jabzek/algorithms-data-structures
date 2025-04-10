@@ -21,6 +21,29 @@ def height(root):
          
     return 1 + max(height(root.left), height(root.right))  
 
+def maximum(root, l):
+    if root is None:
+        return None
+    
+    l.append(root.val)
+    
+    if root.right is None:
+        return root.val
+    
+    return maximum(root.right, l)
+
+
+def minimum(root, l):
+    if root is None:
+        return None
+    
+    l.append(root.val)
+
+    if root.left is None:
+        return root.val
+    
+    return minimum(root.left, l)
+
 def bst_create(n):
     root = None
     
@@ -29,4 +52,12 @@ def bst_create(n):
     
     h = height(root)
     print("Wysokość drzewa BST:", h)
+
+    l_max = []
+    max_val = maximum(root, l_max)
+    print(l_max, max_val)
+
+    l_min = []
+    min_val = minimum(root, l_min)
+    print(l_min, min_val)
 
