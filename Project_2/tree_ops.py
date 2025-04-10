@@ -35,21 +35,21 @@ def get_min_node(root):
         current = current.left
     return current
 
-def delete_node(root, key, is_avl=False):
+def delete_node(root, val, is_avl=False):
     if not root:
         return root
-    if key < root.key:
-        root.left = delete_node(root.left, key, is_avl)
-    elif key > root.key:
-        root.right = delete_node(root.right, key, is_avl)
+    if val < root.val:
+        root.left = delete_node(root.left, val, is_avl)
+    elif val > root.val:
+        root.right = delete_node(root.right, val, is_avl)
     else:
         if not root.left:
             return root.right
         elif not root.right:
             return root.left
         min_larger_node = get_min_node(root.right)
-        root.key = min_larger_node.key
-        root.right = delete_node(root.right, min_larger_node.key, is_avl)
+        root.val = min_larger_node.val
+        root.right = delete_node(root.right, min_larger_node.val, is_avl)
 
     if is_avl:
         update_height(root)
@@ -71,12 +71,12 @@ def delete_node(root, key, is_avl=False):
 def in_order(root):
     if root:
         in_order(root.left)
-        print(root.key, end=' ')
+        print(root.val, end=' ')
         in_order(root.right)
 
 def pre_order(root):
     if root:
-        print(root.key, end=' ')
+        print(root.val, end=' ')
         pre_order(root.left)
         pre_order(root.right)
 
@@ -84,7 +84,7 @@ def post_order(root):
     if root:
         post_order(root.left)
         post_order(root.right)
-        print(root.key, end=' ')
+        print(root.val, end=' ')
 
 def find_min_max(root):
     min_node = root
@@ -93,14 +93,14 @@ def find_min_max(root):
     max_node = root
     while max_node.right:
         max_node = max_node.right
-    print("Najmniejszy element w drzewie: ", min_node.key)
-    print("Największy element w drzewie: ", max_node.key)
+    print("Najmniejszy element w drzewie:", min_node.val)
+    print("Największy element w drzewie:", max_node.val)
 
 def delete_whole_tree_post_order(root):
     if root:
         delete_whole_tree_post_order(root.left)
         delete_whole_tree_post_order(root.right)
-        print("Usuwam węzeł:", root.key)
+        print("Usuwam węzeł:", root.val)
         root.left = None
         root.right = None
     return None

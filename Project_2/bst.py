@@ -1,8 +1,4 @@
-class Node:
-    def __init__(self, val):
-        self.val = val        
-        self.left = None      
-        self.right = None     
+from node import Node   
 
 def insert(root, val):
     if root is None:
