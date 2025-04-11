@@ -2,8 +2,6 @@ from node import Node
 
 
 def build_avl_tree(data):
-    data.sort()
-
     if not data:
         return None
 

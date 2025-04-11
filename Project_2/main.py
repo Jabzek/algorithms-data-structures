@@ -23,7 +23,7 @@ def help():
     print("7. Wyszukiwanie najwiekszego i najmniejszego elementu")
     print("8. Wysokość drzewa")
     print("9. Help")
-    print("10. Zakończenie programu")
+    print("10. Zakończenie programu\n")
 
 
 def menu(root):
@@ -83,9 +83,9 @@ def menu(root):
                     min_v, l_min = minimum(root, [])
                     max_v, l_max = maximum(root, [])
                     print("Najmniejszy element:", min_v)
-                    print("Przebyta droga:", l_min, end="\n")
+                    print("Przebyta droga:", l_min, end="\n\n")
                     print("Największy element:", max_v)
-                    print("Przebyta droga:", l_max, end="\n")
+                    print("Przebyta droga:", l_max, end="\n\n")
 
             case "8":
                 if root is None:
@@ -93,11 +93,9 @@ def menu(root):
                 else:
                     hgt = height(root)
                     print("Wysokość drzewa to:", hgt)    
-
-            case "help":
-                help()
+                    print()
             
-            case "9":
+            case "9" | "help":
                 help()
             
             case "10":
@@ -105,8 +103,7 @@ def menu(root):
                 exit()
             
             case _:
-                print("Błędny wybór. Proszę wybrać ponownie.")
-
+                print("Błędny wybór. Proszę wybrać ponownie.\n")
 
 def main():
     global is_avl
@@ -118,6 +115,7 @@ def main():
         l = input("Wybór: ")
         if l == "1":
             n = input_numbers()
+            print()
             break
         elif l == "2":
             n = [random.randint(0, 100) for _ in range(10)]
@@ -141,6 +139,7 @@ def main():
             is_avl = True
             print()
             print("Wybrano drzewo AVL\n")
+            n.sort()
             root = build_avl_tree(n)
             menu(root)
             break
