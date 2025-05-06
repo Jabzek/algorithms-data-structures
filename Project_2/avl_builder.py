@@ -1,6 +1,5 @@
 from node import Node
 
-
 def build_avl_tree(data):
     if not data:
         return None
