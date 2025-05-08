@@ -80,10 +80,11 @@ def average(filename):
             
             if len(create_times) == 4:
                 avg_create = sum(create_times) / len(create_times)
-                avg_search_min = sum(search_times_min) / len(search_times_min)
-                avg_search_max = sum(search_times_max) / len(search_times_max)
+                # avg_search_min = sum(search_times_min) / len(search_times_min)
+                # avg_search_max = sum(search_times_max) / len(search_times_max)
                 avg_in_order = sum(in_order_times) / len(in_order_times)
-                avg_search = (avg_search_min + avg_search_max) / 2
+                avg_search = (sum(search_times_max) + sum(search_times_min)) / (len(search_times_max) + len(search_times_min))
+                # avg_search = (avg_search_min + avg_search_max) / 2
 
                 if name == "BST":
                     avg_dsw = sum(dsw_times) / len(dsw_times)
@@ -124,7 +125,7 @@ def main(n):
         average(filename)
 
 
-n = [2 ** i for i in range(11, 16)]
+n = [2 ** i for i in range(12, 17)]
 
 if __name__ == "__main__":
     main(n)
