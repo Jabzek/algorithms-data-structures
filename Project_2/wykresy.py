@@ -40,7 +40,7 @@ def plot(array_size, create_time_bst, create_time_avl, search_time_bst, search_t
     
     bst_oper = (create_time_bst, search_time_bst, in_order_time_bst, dsw_time_bst)
     avl_oper = (create_time_avl, search_time_avl, in_order_time_avl)    
-    titles = ("Tworzenie drzew", "Wyszukanie min/max", "Wypisanie In-Order", "Równoważenie drzewa")
+    titles = ("Tworzenie drzew", "Wyszukanie min/max", "Wypisanie In-Order", "Równoważenie drzewa BST")
     file_names = ("create_time", "search_time", "in_order_time", "dsw_time")
     label_bst = ("BST Create Time", "BST Search Time", "BST In-Order Time")
     label_avl = ("AVL Create Time", "AVL Search Time", "AVL In-Order Time")
@@ -48,10 +48,11 @@ def plot(array_size, create_time_bst, create_time_avl, search_time_bst, search_t
     for el in range(4):
         plt.figure()
         if el == 3:
-            plt.plot(array_size, bst_oper[3], label='DSW Time', color='green')
+            plt.plot(array_size, bst_oper[3], label='DSW Time', color='blue')
         else:
-            plt.plot(array_size, bst_oper[el], label=label_bst[el], color='blue')
-            plt.plot(array_size, avl_oper[el], label=label_avl[el], color='red')
+            continue
+            # plt.plot(array_size, bst_oper[el], label=label_bst[el], color='blue')
+            # plt.plot(array_size, avl_oper[el], label=label_avl[el], color='red')
 
         plt.title(titles[el])
         plt.xlabel("Rozmiar instancji")
