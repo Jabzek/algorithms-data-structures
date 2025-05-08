@@ -133,7 +133,7 @@ def main():
     
     while True:
         l = input("Wybór: ").lower()
-        if l == "keyboard " or l == "1":
+        if l == "keyboard" or l == "1":
             n = input_numbers()
             print()
             break
