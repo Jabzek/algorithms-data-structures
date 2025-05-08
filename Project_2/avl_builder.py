@@ -1,7 +1,7 @@
 from node import Node
 
 def build_avl_tree(data):
-    if not data:
+    if len(data) == 0:
         return None
 
     mid = len(data) // 2
