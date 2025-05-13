@@ -50,9 +50,8 @@ def plot(array_size, create_time_bst, create_time_avl, search_time_bst, search_t
         if el == 3:
             plt.plot(array_size, bst_oper[3], label='DSW Time', color='blue')
         else:
-            continue
-            # plt.plot(array_size, bst_oper[el], label=label_bst[el], color='blue')
-            # plt.plot(array_size, avl_oper[el], label=label_avl[el], color='red')
+            plt.plot(array_size, bst_oper[el], label=label_bst[el], color='blue')
+            plt.plot(array_size, avl_oper[el], label=label_avl[el], color='red')
 
         plt.title(titles[el])
         plt.xlabel("Rozmiar instancji")
