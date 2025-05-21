@@ -1,6 +1,16 @@
 import argparse
 from graph_creation import generate, user_provided
+from graph_operations import print_graph
 
+def help():
+    print("Help \t Pokazuje tę wiadomość")
+    print("Print \t Wypisuje graf w wybranej reprezentacji")
+    print("Find \t Sprawdza czy podana krawędź istnieje w grafie")
+    print("Breath-first search \t Przechodzenie grafu wszerz (BFS)")
+    print("Depth-first search \t Przechodzenie grafu w głąb (DFS)")
+    print("Kahn \t Algorytm Kahn'a")
+    print("Tarjan \t Algorytm Tarjan'a")
+    print("Exit \t Kończy program\n")
 
 
 def main():
@@ -11,26 +21,41 @@ def main():
     args = parser.parse_args()
 
     if args.generate:
-        graph = generate()
+        graph, n = generate()
     elif args.user_provided:
-        graph = user_provided()
+        graph, n = user_provided()
     else:
         print("Niepoprawna komenda. Użyj '--generate' lub '--user_provided'.")
 
-    print("Wybierz reprezentację grafu:", end=" ")
+    print("Wybierz reprezentację grafu (matrix/list/table):", end=" ")
     while True:
-        a = input().lower()
-        if a == "s":
-            graph.show_as_set()
+        representation = input().lower()
+
+        if representation == "matrix":
+            graph.show_matrix(n)
             break
-        elif a == "l":
-            graph.show_as_list()
+        elif representation == "list":
+            graph.show_list()
             break
-        elif a == "m":
-            graph.show_as_matrix()
+        elif representation == "table":
+            graph.show_table()
             break
         else:
-            print("Niepoprawna komenda. Wybierz 's', 'l' lub 'm'.")
+            print("Niepoprawna komenda. Wybierz matrix, list lub table.")
+
+    print("Jaką operację chcesz wykonać?\n")
+    help()    
+    
+    while True:
+        operation = input("action -> ").lower()
+        match operation:
+            case "help":
+                help()
+            case "exit":
+                print("Koniec programu.")
+                exit()
+            case "print":
+                print_graph(graph, representation, n)                  
 
 
 

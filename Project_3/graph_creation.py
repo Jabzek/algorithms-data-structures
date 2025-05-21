@@ -1,23 +1,17 @@
 import random
-
-class Graph:
-    def __init__(self):
-        self.edges = []
-
-    def add_edge(self, k):
-        self.edges.append(k)        
-
+from graph import Graph
+            
 
 def generate():
     while True:
         try:
             n = int(input("Podaj liczbę wierzchołków: "))
             saturation = int(input("Podaj nasycenie grafu w %: "))
-            if n <= 0 or saturation < 0 or saturation > 100:
+            if n <= 0 or saturation <= 0 or saturation > 100:
                 raise ValueError
             break
         except ValueError:
-            print("Niepoprawne dane. Wpisz dane jeszcze raz.")
+            print("Niepoprawne dane. Wpisz dane jeszcze raz.\n")
 
     graph = Graph()
     max_edges = n * (n - 1) // 2
@@ -36,7 +30,7 @@ def generate():
             graph.add_edge(k)
             i += 1
 
-    return graph
+    return graph, n
     
             
 def user_provided():
@@ -47,7 +41,7 @@ def user_provided():
                 raise ValueError
             break
         except ValueError:
-            print("Niepoprawne dane. Wpisz dane jeszcze raz.")
+            print("Niepoprawne dane. Wpisz dane jeszcze raz.\n")
     
     graph = Graph()
     print("Przy każdym wierzchołku podaj listę jego następników.\n")
@@ -65,8 +59,8 @@ def user_provided():
                 for i in l:
                     graph.add_edge((idx, i))
         except ValueError:
-            print("Niepoprawne dane. Wpisz dane jeszcze raz.")
+            print("Niepoprawny wierzchołek, wpisz dane jeszcze raz.")
             continue
         idx += 1
 
-    return graph
+    return graph, n
