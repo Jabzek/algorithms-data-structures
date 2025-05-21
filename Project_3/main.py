@@ -1,6 +1,5 @@
 import argparse
 from graph_creation import generate, user_provided
-from graph_operations import print_graph
 
 def help():
     print("Help \t\t\t Pokazuje tę wiadomość")
@@ -55,9 +54,9 @@ def main():
                 print("Koniec programu.")
                 exit()
             case "print":
-                print_graph(graph, representation, n)                  
-
-
+                graph.g_print(representation, n)                  
+            case "find":
+                graph.find(representation, n)
 
 
 if __name__ == "__main__":
