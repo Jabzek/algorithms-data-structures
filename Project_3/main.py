@@ -55,8 +55,8 @@ def main():
                 exit()
             case "print":
                 graph.g_print(representation, n)                  
-
-
+            case "find":
+                graph.find(representation, n)
 
 
 if __name__ == "__main__":

@@ -54,12 +54,16 @@ def user_provided():
                 idx += 1
                 continue
             if any(i > n or i < 1 for i in l):
+                message = "Podano nieistniejące wierzchołki."
                 raise ValueError
+            elif any(i == j for i in l for j in l):
+                message = "Podano dwa takie same wierzchołki."
+                raise ValueError            
             else:
                 for i in l:
                     graph.add_edge((idx, i))
         except ValueError:
-            print("Niepoprawny wierzchołek, wpisz dane jeszcze raz.")
+            print(f"{message} Podaj dane jeszcze raz.\n")
             continue
         idx += 1
 
