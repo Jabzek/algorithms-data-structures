@@ -35,10 +35,10 @@ def main():
             graph.show_matrix(n)
             break
         elif representation == "list":
-            graph.show_list()
+            graph.show_list(n)
             break
         elif representation == "table":
-            graph.show_table()
+            graph.show_table(n)
             break
         else:
             print("Niepoprawna komenda. Wybierz matrix, list lub table.")
