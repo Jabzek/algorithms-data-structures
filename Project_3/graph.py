@@ -73,3 +73,7 @@ class Graph:
             else:
                 print("Krawędź nie istnieje w grafie")
         print()
+    
+    def kahn(self, representation, n):
+        pass
+    
