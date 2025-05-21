@@ -17,7 +17,22 @@ def main():
     else:
         print("Niepoprawna komenda. Użyj '--generate' lub '--user_provided'.")
 
-    print(graph.edges)
+    print("Wybierz reprezentację grafu:", end=" ")
+    while True:
+        a = input().lower()
+        if a == "s":
+            graph.show_as_set()
+            break
+        elif a == "l":
+            graph.show_as_list()
+            break
+        elif a == "m":
+            graph.show_as_matrix()
+            break
+        else:
+            print("Niepoprawna komenda. Wybierz 's', 'l' lub 'm'.")
+
+
 
 
 if __name__ == "__main__":
