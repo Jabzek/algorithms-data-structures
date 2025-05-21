@@ -3,14 +3,14 @@ from graph_creation import generate, user_provided
 from graph_operations import print_graph
 
 def help():
-    print("Help \t Pokazuje tę wiadomość")
-    print("Print \t Wypisuje graf w wybranej reprezentacji")
-    print("Find \t Sprawdza czy podana krawędź istnieje w grafie")
+    print("Help \t\t\t Pokazuje tę wiadomość")
+    print("Print \t\t\t Wypisuje graf w wybranej reprezentacji")
+    print("Find \t\t\t Sprawdza czy podana krawędź istnieje w grafie")
     print("Breath-first search \t Przechodzenie grafu wszerz (BFS)")
     print("Depth-first search \t Przechodzenie grafu w głąb (DFS)")
-    print("Kahn \t Algorytm Kahn'a")
-    print("Tarjan \t Algorytm Tarjan'a")
-    print("Exit \t Kończy program\n")
+    print("Kahn \t\t\t Algorytm Kahn'a")
+    print("Tarjan \t\t\t Algorytm Tarjan'a")
+    print("Exit \t\t\t Kończy program\n")
 
 
 def main():
