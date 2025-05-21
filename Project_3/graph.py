@@ -19,7 +19,7 @@ class Graph:
             a, b = el
             self.list[a-1].append(b)
 
-    def show_table(self, n):
+    def show_table(self):
         self.table = copy.deepcopy(self.edges)
         self.table.sort(key=lambda x: x[0])
             

@@ -38,7 +38,7 @@ def main():
             graph.show_list(n)
             break
         elif representation == "table":
-            graph.show_table(n)
+            graph.show_table()
             break
         else:
             print("Niepoprawna komenda. Wybierz matrix, list lub table.")
