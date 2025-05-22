@@ -135,7 +135,34 @@ class Graph:
             print("Kolejność topologiczna grafu: " + " ".join(str(i) for i in self.kahn_list))
     
     def tarjan(self, representation, n):
-        pass
+        visited = [False] * n
+        stack = []
+
+        def tarjan_visit(node):
+            visited[node] = True
+            if representation == "matrix":
+                for i in range(n):
+                    if self.matrix[node][i] == 1 and not visited[i]:
+                        tarjan_visit(i)
+            elif representation == "list":
+                for neighbor in self.list[node]:
+                    idx = neighbor - 1
+                    if not visited[idx]:
+                        tarjan_visit(idx)
+            elif representation == "table":
+                for edge in self.table:
+                    if edge[0] == node + 1:
+                        idx = edge[1] - 1
+                        if not visited[idx]:
+                            tarjan_visit(idx)
+            stack.append(node + 1)  # Dodaj po odwiedzeniu wszystkich sąsiadów
+
+        for i in range(n):
+            if not visited[i]:
+                tarjan_visit(i)
+
+        result = stack[::-1]
+        print("Kolejność topologiczna grafu (Tarjan):", " ".join(str(i) for i in result))    
     
     
     def bfs(self, representation, n):
