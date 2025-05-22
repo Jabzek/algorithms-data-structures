@@ -1,5 +1,6 @@
 import copy
 import time
+from collections import deque
 
 class Graph:
     def __init__(self):
@@ -132,3 +133,16 @@ class Graph:
             print("Graf nie jest acykliczny")
         else:
             print("Kolejność topologiczna grafu: " + " ".join(str(i) for i in self.kahn_list))
+    
+    def tarjan(self, representation, n):
+        pass
+    
+    
+    def bfs(self, representation, n):
+        start = int(input("Podaj węzeł startowy: "))
+        start -= 1
+    
+
+    def dfs(self, representation, n):
+        start = int(input("Podaj węzeł startowy: "))
+        start -= 1

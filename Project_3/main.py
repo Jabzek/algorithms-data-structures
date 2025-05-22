@@ -28,7 +28,7 @@ def main():
 
     print("Wybierz reprezentację grafu (matrix/list/table):", end=" ")
     while True:
-        representation = input().lower()
+        representation = input().lower().strip()
 
         if representation == "matrix":
             graph.show_matrix(n)
@@ -46,7 +46,7 @@ def main():
     help()    
     
     while True:
-        operation = input("action -> ").lower()
+        operation = input("action -> ").lower().strip()
         match operation:
             case "help":
                 help()
@@ -59,6 +59,15 @@ def main():
                 graph.find(representation, n)
             case "kahn":
                 graph.kahn(representation, n)
+            case "bfs" | "breadth-first-search":
+                graph.bfs(representation, n)
+            case "dfs" | "depth-first-search":
+                graph.dfs(representation, n)
+            case "tarjan":
+                graph.tarjan(representation, n)
+            case _:
+                print("Niepoprawna komenda. Wpisz 'help' aby zobaczyć dostępne komendy.\n")
+                continue
 
 
 if __name__ == "__main__":
