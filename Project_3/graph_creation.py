@@ -56,7 +56,7 @@ def user_provided():
             if any(i > n or i < 1 for i in l):
                 message = "Podano nieistniejące wierzchołki."
                 raise ValueError
-            elif any(i == j for i in l for j in l):
+            elif len(l) != len(set(l)):
                 message = "Podano dwa takie same wierzchołki."
                 raise ValueError            
             else:
