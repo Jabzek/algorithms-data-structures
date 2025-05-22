@@ -57,6 +57,8 @@ def main():
                 graph.g_print(representation, n)                  
             case "find":
                 graph.find(representation, n)
+            case "kahn":
+                graph.kahn(representation, n)
 
 
 if __name__ == "__main__":
