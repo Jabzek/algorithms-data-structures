@@ -162,7 +162,7 @@ class Graph:
                 tarjan_visit(i)
 
         result = stack[::-1]
-        print("Kolejność topologiczna grafu (Tarjan):", " ".join(str(i) for i in result))    
+        print("Kolejność topologiczna grafu:", " ".join(str(i) for i in result))    
     
     
     def bfs(self, representation, n):
@@ -172,7 +172,7 @@ class Graph:
         def bfs_visit(start):
             queue = deque()
             queue.append(start)
-            visited[0] = True
+            visited[start] = True
 
             while queue:
                 node = queue.popleft()
@@ -200,7 +200,7 @@ class Graph:
             if not visited[i]:
                 bfs_visit(i)
 
-        print("Odwiedzone wierzchołki (BFS):", " ".join(str(i) for i in self.result))
+        print("Odwiedzone wierzchołki:", " ".join(str(i) for i in self.result))
     
 
     def dfs(self, representation, n):
@@ -216,14 +216,13 @@ class Graph:
                     if self.matrix[node][i] == 1 and not visited[i]:
                         dfs_visit(i)
             elif representation == "list":
-                for neighbor in self.list[node]:
-                    idx = neighbor - 1
-                    if not visited[idx]:
-                        dfs_visit(idx)
+                for el in self.list[node]:
+                    if not visited[el - 1]:
+                        dfs_visit(el - 1)
             elif representation == "table":
-                for edge in self.table:
-                    if edge[0] == node + 1:
-                        idx = edge[1] - 1
+                for el in self.table:
+                    if el[0] == node + 1:
+                        idx = el[1] - 1
                         if not visited[idx]:
                             dfs_visit(idx)
 
@@ -231,4 +230,4 @@ class Graph:
             if not visited[i]:
                 dfs_visit(i)
 
-        print("Odwiedzone wierzchołki (DFS):", " ".join(str(i) for i in self.result))
+        print("Odwiedzone wierzchołki:", " ".join(str(i) for i in self.result))
