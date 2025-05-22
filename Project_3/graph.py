@@ -141,8 +141,77 @@ class Graph:
     def bfs(self, representation, n):
         start = int(input("Podaj węzeł startowy: "))
         start -= 1
+
+        visited = [False] * n
+        queue = deque()
+        result = []
+
+        # BFS od węzła startowego
+        queue.append(start)
+        visited[start] = True
+
+        while queue:
+            node = queue.popleft()
+            result.append(node + 1)
+            if representation == "matrix":
+                for i in range(n):
+                    if self.matrix[node][i] == 1 and not visited[i]:
+                        queue.append(i)
+                        visited[i] = True
+            elif representation == "list":
+                for neighbor in self.list[node]:
+                    idx = neighbor - 1
+                    if not visited[idx]:
+                        queue.append(idx)
+                        visited[idx] = True
+            elif representation == "table":
+                for edge in self.table:
+                    if edge[0] == node + 1:
+                        idx = edge[1] - 1
+                        if not visited[idx]:
+                            queue.append(idx)
+                            visited[idx] = True
+
+        # Dodaj pozostałe nieodwiedzone wierzchołki (niepołączone)
+        for i in range(n):
+            if not visited[i]:
+                result.append(i + 1)
+
+        print("Odwiedzone wierzchołki (BFS):", " ".join(str(i) for i in result))
     
 
     def dfs(self, representation, n):
         start = int(input("Podaj węzeł startowy: "))
         start -= 1
+        
+        visited = [False] * n
+        result = []
+
+        def dfs_visit(node):
+            visited[node] = True
+            result.append(node + 1)
+            if representation == "matrix":
+                for i in range(n):
+                    if self.matrix[node][i] == 1 and not visited[i]:
+                        dfs_visit(i)
+            elif representation == "list":
+                for neighbor in self.list[node]:
+                    idx = neighbor - 1
+                    if not visited[idx]:
+                        dfs_visit(idx)
+            elif representation == "table":
+                for edge in self.table:
+                    if edge[0] == node + 1:
+                        idx = edge[1] - 1
+                        if not visited[idx]:
+                            dfs_visit(idx)
+
+        # DFS od węzła startowego
+        dfs_visit(start)
+
+        # Dodaj pozostałe nieodwiedzone wierzchołki (niepołączone)
+        for i in range(n):
+            if not visited[i]:
+                result.append(i + 1)
+
+        print("Odwiedzone wierzchołki (DFS):", " ".join(str(i) for i in result))
