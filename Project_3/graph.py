@@ -155,7 +155,7 @@ class Graph:
                         idx = edge[1] - 1
                         if not visited[idx]:
                             tarjan_visit(idx)
-            stack.append(node + 1)  # Dodaj po odwiedzeniu wszystkich sąsiadów
+            stack.append(node + 1) 
 
         for i in range(n):
             if not visited[i]:
@@ -196,7 +196,6 @@ class Graph:
                                 queue.append(idx)
                                 visited[idx] = True
 
-        # Dodaj pozostałe nieodwiedzone wierzchołki (niepołączone)
         for i in range(n):
             if not visited[i]:
                 bfs_visit(i)
@@ -228,7 +227,6 @@ class Graph:
                         if not visited[idx]:
                             dfs_visit(idx)
 
-        # Dodaj pozostałe nieodwiedzone wierzchołki (niepołączone)
         for i in range(n):
             if not visited[i]:
                 dfs_visit(i)
