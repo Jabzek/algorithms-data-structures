@@ -55,16 +55,17 @@ class Graph:
 
 
     def find(self, representation, n):
-        print("Podaj wierzchołki krawędzi")
-        try:
-            a = int(input("from -> "))
-            b = int(input("to -> "))
-            if a <= 0 or b <= 0 or a > n or b > n:
-                raise ValueError 
-        except ValueError:
-            print("Podano nieistniejące wierzchołki.\n")
-            return
-                
+        while True:
+            print("Podaj wierzchołki krawędzi")
+            try:
+                a = int(input("from -> "))
+                b = int(input("to -> "))
+                if a <= 0 or b <= 0 or a > n or b > n:
+                    raise ValueError
+                break 
+            except ValueError:
+                print("Podano nieistniejące wierzchołki. Spróbuj ponownie\n")
+            
         if representation == "matrix":
             if self.matrix[a-1][b-1] == 1:
                 print("Krawędź istnieje w grafie")
