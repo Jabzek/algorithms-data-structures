@@ -63,11 +63,13 @@ def plot(array_size, search_time_matrix, search_time_list, search_time_table, ka
         plt.title(titles[el])
         plt.xlabel("Rozmiar instancji")
         plt.ylabel("Czas [s]")
+        plt.yscale("log")
         plt.legend()
         plt.grid()
-        plt.savefig(os.path.join(output_dir), f"{file_names[el]}.png")
+        plt.savefig(os.path.join(output_dir, f"{file_names[el]}.png"))
         plt.close()
 
+    print("Wykonano wykresy i zapisano do katalogu Plots")
 
 if __name__ == "__main__":
     read_csv()
