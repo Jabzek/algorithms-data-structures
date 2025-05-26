@@ -20,7 +20,7 @@ def main():
     args = parser.parse_args()
 
     if args.generate:
-        graph, n = generate()
+        graph, n = generate(saturation=None, n=None, measurements=False)
     elif args.user_provided:
         graph, n = user_provided()
     else:
@@ -56,15 +56,15 @@ def main():
             case "print":
                 graph.g_print(representation, n)                  
             case "find":
-                graph.find(representation, n)
+                graph.find(representation, n, a=None, b=None, measurements=False)
             case "kahn":
-                graph.kahn(representation, n)
+                graph.kahn(representation, n, measurements=False)
             case "bfs" | "breadth-first-search":
                 graph.bfs(representation, n)
             case "dfs" | "depth-first-search":
                 graph.dfs(representation, n)
             case "tarjan":
-                graph.tarjan(representation, n)
+                graph.tarjan(representation, n, measurements=False)
             case _:
                 print("Niepoprawna komenda. Wpisz 'help' aby zobaczyć dostępne komendy.\n")
                 continue

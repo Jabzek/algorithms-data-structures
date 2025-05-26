@@ -2,16 +2,19 @@ import random
 from graph import Graph
             
 
-def generate():
-    while True:
-        try:
-            n = int(input("Podaj liczbę wierzchołków: "))
-            saturation = int(input("Podaj nasycenie grafu w %: "))
-            if n <= 0 or saturation <= 0 or saturation > 100:
-                raise ValueError
-            break
-        except ValueError:
-            print("Niepoprawne dane. Wpisz dane jeszcze raz.\n")
+def generate(saturation, n, measurements):
+    if measurements:
+        pass
+    else:
+        while True:
+            try:
+                n = int(input("Podaj liczbę wierzchołków: "))
+                saturation = int(input("Podaj nasycenie grafu w %: "))
+                if n <= 0 or saturation <= 0 or saturation > 100:
+                    raise ValueError
+                break
+            except ValueError:
+                print("Niepoprawne dane. Wpisz dane jeszcze raz.\n")
 
     graph = Graph()
     max_edges = n * (n - 1) // 2

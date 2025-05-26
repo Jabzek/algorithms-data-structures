@@ -54,37 +54,54 @@ class Graph:
             print()
 
 
-    def find(self, representation, n):
-        while True:
-            print("Podaj wierzchołki krawędzi")
-            try:
-                a = int(input("from -> "))
-                b = int(input("to -> "))
-                if a <= 0 or b <= 0 or a > n or b > n:
-                    raise ValueError
-                break 
-            except ValueError:
-                print("Podano nieistniejące wierzchołki. Spróbuj ponownie\n")
-            
+    def find(self, representation, n, a, b, measurements):
+        if measurements:
+            pass
+        else:
+            while True:
+                print("Podaj wierzchołki krawędzi")
+                try:
+                    a = int(input("from -> "))
+                    b = int(input("to -> "))
+                    if a <= 0 or b <= 0 or a > n or b > n:
+                        raise ValueError
+                    break 
+                except ValueError:
+                    print("Podano nieistniejące wierzchołki. Spróbuj ponownie\n")
+                
         if representation == "matrix":
+            start_time = time.time()
             if self.matrix[a-1][b-1] == 1:
                 print("Krawędź istnieje w grafie")
             else:
                 print("Krawędź nie istnieje w grafie")
+            end_time = time.time()
+            elapsed_time = end_time - start_time
+        
         elif representation == "list":
+            start_time = time.time()
             if b in self.list[a-1]:
                 print("Krawędź istnieje w grafie")
             else:
                 print("Krawędź nie istnieje w grafie")
+            end_time = time.time()
+            elapsed_time = end_time - start_time    
+        
         elif representation == "table":
+            start_time = time.time()
             if (a, b) in self.table:
                 print("Krawędź istnieje w grafie")
             else:
                 print("Krawędź nie istnieje w grafie")
+            end_time = time.time()
+            elapsed_time = end_time - start_time
         print()
+        if measurements:
+            return elapsed_time
+        
 
-
-    def kahn(self, representation, n):
+    def kahn(self, representation, n, measurements):
+        start_time = time.time()
         self.kahn_list = []
         in_degree = [0] * n
         
@@ -134,8 +151,15 @@ class Graph:
             print("Graf nie jest acykliczny")
         else:
             print("Kolejność topologiczna grafu: " + " ".join(str(i) for i in self.kahn_list))
-    
-    def tarjan(self, representation, n):
+
+        end_time = time.time()
+        elapsed_time = end_time - start_time
+        if measurements:
+            return elapsed_time
+
+
+    def tarjan(self, representation, n, measurements):
+        start_time = time.time()
         visited = [False] * n
         stack = []
 
@@ -163,8 +187,13 @@ class Graph:
                 tarjan_visit(i)
 
         result = stack[::-1]
+        end_time = time.time()
         print("Kolejność topologiczna grafu:", " ".join(str(i) for i in result))    
     
+        elapsed_time = end_time - start_time
+        if measurements:
+            return elapsed_time
+        
     
     def bfs(self, representation, n):
         visited = [False] * n
