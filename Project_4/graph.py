@@ -62,8 +62,33 @@ class Graph:
     
     
     def hamiltonian_cycle(self):
-        visitedNodes = [False] * self.numberofNodes
-        path = []
+        
+        def hamiltonian(currentNode, path, visitedNodes): 
+            visitedNodes[currentNode] = True
+
+            for i in range(self.numberofNodes):
+                if self.matrixRepresentation[currentNode][i] == 1 and not visitedNodes[i]:
+                    path.append(i + 1)
+                    if len(path) == self.numberofNodes:
+                        if self.matrixRepresentation[path[-1] - 1][path[0] - 1] == 1:
+                            return True       
+                    if hamiltonian(i, path, visitedNodes):
+                        return True
+                    
+            visitedNodes[currentNode] = False
+            path.pop()          
+            return False   
+        
+        for i in range(self.numberofNodes):
+            path = [i + 1]
+            visitedNodes = [False] * self.numberofNodes
+            if hamiltonian(i, path, visitedNodes):
+                print("Znaleziono cykl Hamiltona: " + " -> ".join(str(node) for node in path + [path[0]]))
+                print()
+                return
+        print("Nie znaleziono cyklu Hamiltona w grafie.\n")
+        
+
         
 
     def eulerian_cycle(self):

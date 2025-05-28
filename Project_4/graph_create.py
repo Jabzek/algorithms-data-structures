@@ -42,14 +42,15 @@ def create_graph(hamiltonGraph):
     nodesList = draw_nodes(numberofNodes)   # list of nodes in the graph which will create unique hamiltonian cycle
     countEdges = 0
     
-    for i in range(len(nodesList)):       # create hamiltonian cycle
+    # create hamiltonian cycle
+    for i in range(len(nodesList)):       
         a = nodesList[i % numberofNodes]
         b = nodesList[(i + 1) % numberofNodes]
         graph.add_edges(a, b)
         countEdges += 1
 
-
-    while countEdges < numberofEdges:       # add random edges to the graph
+    # add random edges to the graph
+    while countEdges < numberofEdges:       
         a = random.randint(1, numberofNodes)
         b = random.randint(1, numberofNodes)
         if a != b and graph.matrixRepresentation[a - 1][b - 1] == 0:
