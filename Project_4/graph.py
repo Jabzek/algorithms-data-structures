@@ -1,4 +1,6 @@
 import math
+import os
+import random
 
 class Graph:
     def __init__(self, numberofNodes):
@@ -25,40 +27,40 @@ class Graph:
 
 
     def export_to_tickz(self):
-
-        n = self.numberofNodes
-        radius = 3  # promień okręgu
+        circleRadius = 3  
         tikz = []
 
-        # Preambuła LaTeX
         tikz.append("\\documentclass{standalone}")
         tikz.append("\\usepackage{tikz}")
         tikz.append("\\begin{document}")
         tikz.append("\\begin{tikzpicture}[scale=1, every node/.style={circle, draw}]")
 
-        # Oblicz współrzędne wierzchołków na okręgu
+        # Calculate nodes coordinates
         positions = []
-        for i in range(n):
-            angle = 2 * math.pi * i / n
-            x = radius * math.cos(angle)
-            y = radius * math.sin(angle)
+        for i in range(self.numberofNodes):
+            angle = 2 * math.pi * i / self.numberofNodes
+            x = circleRadius * math.cos(angle)
+            y = circleRadius * math.sin(angle)
             positions.append((x, y))
             tikz.append(f"\\node (N{i+1}) at ({x:.2f},{y:.2f}) {{{i+1}}};")
 
-        # Dodaj krawędzie
-        for i in range(n):
-            for j in range(i+1, n):
+        # Add edges
+        for i in range(self.numberofNodes):
+            for j in range(i+1, self.numberofNodes):
                 if self.matrixRepresentation[i][j]:
                     tikz.append(f"\\draw (N{i+1}) -- (N{j+1});")
 
         tikz.append("\\end{tikzpicture}")
         tikz.append("\\end{document}")
 
-        # Zapisz do pliku
-        with open("graph_tikz.tex", "w", encoding="utf-8") as f:
+        scriptDir = os.path.dirname(__file__) #Get the directory of the script
+        outputDir = os.path.join(scriptDir, "graph_visualization")
+        filename = os.path.join(outputDir, "graph_tikz.tex") 
+        
+        with open(filename, "w", encoding="utf-8") as file:
             for line in tikz:
-                f.write(line + "\n")
-        print("Eksportowano do graph_tikz.tex")
+                file.write(line + "\n")
+        print("Eksportowano do graph_tikz.tex\n")
     
     
     def hamiltonian_cycle(self):
@@ -82,6 +84,7 @@ class Graph:
         for i in range(self.numberofNodes):
             path = [i + 1]
             visitedNodes = [False] * self.numberofNodes
+            
             if hamiltonian(i, path, visitedNodes):
                 print("Znaleziono cykl Hamiltona: " + " -> ".join(str(node) for node in path + [path[0]]))
                 print()
@@ -92,33 +95,37 @@ class Graph:
         
 
     def eulerian_cycle(self):
-        # Sprawdź warunek konieczny: każdy wierzchołek ma parzysty stopień
+        # Check if all nodes have even degree
         for i in range(self.numberofNodes):
             degree = sum(self.matrixRepresentation[i])
             if degree % 2 != 0:
-                print("Graf nie ma cyklu Eulera (nie wszystkie stopnie są parzyste).")
+                print("Graf nie ma cyklu Eulera (nie wszystkie wierzchołki są stopnia parzystego).\n")
                 return None
 
-        # Skopiuj macierz, by nie modyfikować oryginału
-        graph_copy = [row[:] for row in self.matrixRepresentation]
-        stack = [0]  # Zaczynamy od wierzchołka 1 (indeks 0)
+        while True:
+            start = random.randint(0, self.numberofNodes - 1)
+            if sum(self.matrixRepresentation[start]) > 0:
+                break
+
+        copyofGraph = [row[:] for row in self.matrixRepresentation]
+        stack = [start]  
         path = []
 
         while stack:
             v = stack[-1]
             found = False
             for u in range(self.numberofNodes):
-                if graph_copy[v][u]:
-                    # Usuwamy krawędź
-                    graph_copy[v][u] = 0
-                    graph_copy[u][v] = 0
+                if copyofGraph[v][u]:
+                    copyofGraph[v][u] = 0
+                    copyofGraph[u][v] = 0
                     stack.append(u)
                     found = True
                     break
             if not found:
                 path.append(stack.pop())
 
-        path = [v + 1 for v in path[::-1]]  # Zamiana na numerację od 1
-        print("Cykl Eulera:", path)
+        path = [v + 1 for v in path[::-1]]  
+        print("Znaleziono cykl Eulera: " + " -> ".join(str(node) for node in path))
+        print()
         return path    
     

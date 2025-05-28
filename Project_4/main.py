@@ -1,8 +1,6 @@
 import argparse
 from graph_create import create_graph
 
-
-
 def help_messages():
     print("Help \t\t Pokazuje dostępne komendy.")
     print("Print \t\t Wypisuje graf.")
