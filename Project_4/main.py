@@ -1,5 +1,5 @@
 import argparse
-from graph_create import hamilton, non_hamilton
+from graph_create import create_graph
 
 def main():
     parser = argparse.ArgumentParser(description="Generowanie grafu.")
@@ -9,9 +9,9 @@ def main():
     args = parser.parse_args()
 
     if args.hamilton:
-        graph = hamilton()
+        graph = create_graph(hamiltonGraph=True)
     elif args.non_hamilton:
-        graph = non_hamilton()
+        graph = create_graph(hamiltonGraph=False)
     else:
         print("Niepoprawna komenda. Użyj '--hamilton' lub '--non-hamilton'.")
 
