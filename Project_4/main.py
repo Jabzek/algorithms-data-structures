@@ -1,6 +1,14 @@
 import argparse
 from graph_create import create_graph
 
+
+def help_message():
+    print("Help \t\t Pokazuje dostępne komendy.")
+    print("Print \t\t Wypisuje graf.")
+    print("Euler \t\t Znajduje cykl Eulera w grafie.")
+    print("Hamilton \t\t Znajduje cykl Hamiltona w grafie.")
+    print("Exit \t\t Kończy program.")
+
 def main():
     parser = argparse.ArgumentParser(description="Generowanie grafu.")
     group = parser.add_mutually_exclusive_group(required=True)
@@ -15,10 +23,24 @@ def main():
     else:
         print("Niepoprawna komenda. Użyj '--hamilton' lub '--non-hamilton'.")
 
+    print("Graf został utworzony. Wybierz operację do wykonania na grafie:")
+    help_message()
 
-
-
-
+    while True:
+        command = input("Wprowadź komendę: ").strip().lower()
+        match command:
+            case "help":
+                help_message()
+            case "print":
+                pass
+            case "euler":
+                pass
+            case "hamilton":
+                pass
+            case "exit":
+                break
+            case _:
+                print("Nieznana komenda. Spróbuj ponownie.")
 
 if __name__ == "__main__":
     main()
