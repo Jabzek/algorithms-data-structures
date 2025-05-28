@@ -71,8 +71,8 @@ class Graph:
             for i in range(self.numberofNodes):
                 if self.matrixRepresentation[currentNode][i] == 1 and not visitedNodes[i]:
                     path.append(i + 1)
-                    if len(path) == self.numberofNodes:
-                        if self.matrixRepresentation[path[-1] - 1][path[0] - 1] == 1:
+                    if len(path) == self.numberofNodes:  
+                        if self.matrixRepresentation[path[-1] - 1][path[0] - 1] == 1:  #Check if the last node connects to the first
                             return True       
                     if hamiltonian(i, path, visitedNodes):
                         return True
@@ -90,8 +90,6 @@ class Graph:
                 print()
                 return
         print("Nie znaleziono cyklu Hamiltona w grafie.\n")
-        
-
         
 
     def eulerian_cycle(self):
