@@ -36,11 +36,11 @@ def main():
             case "print":
                 graph.show_graph()
             case "euler":
-                pass
+                graph.eulerian_cycle()
             case "hamilton":
-                pass
+                graph.hamiltonian_cycle()
             case "export":
-                pass
+                graph.export_to_tickz()
             case "exit":
                 break
             case _:
