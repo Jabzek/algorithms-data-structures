@@ -16,7 +16,6 @@ def data_provide(hamiltonGraph):
             break
         except ValueError:
             print("Niepoprawne dane. Wpisz dane jeszcze raz.\n")
-    
     return numberofNodes, saturation 
 
 
@@ -39,33 +38,30 @@ def create_graph(hamiltonGraph):
     graph = Graph(numberofNodes)
     
     maxNumberOfEdges = numberofNodes * (numberofNodes - 1) // 2
-    numberOfEdges = maxNumberOfEdges * saturation // 100
+    numberofEdges = maxNumberOfEdges * saturation // 100
     nodesList = draw_nodes(numberofNodes)   # list of nodes in the graph which will create unique hamiltonian cycle
-    print(nodesList)
     countEdges = 0
     
     for i in range(len(nodesList)):       # create hamiltonian cycle
         a = nodesList[i % numberofNodes]
         b = nodesList[(i + 1) % numberofNodes]
         graph.add_edges(a, b)
-        print((a, b))
         countEdges += 1
 
 
-    while countEdges < numberOfEdges:       # add random edges to the graph
+    while countEdges < numberofEdges:       # add random edges to the graph
         a = random.randint(1, numberofNodes)
         b = random.randint(1, numberofNodes)
         if a != b and graph.matrixRepresentation[a - 1][b - 1] == 0:
             graph.add_edges(a, b)
-            print((a, b))
             countEdges += 1
 
     if not hamiltonGraph:
         node = random.randint(1, numberofNodes)
-        print(node)
         for i in range(numberofNodes):
             if graph.matrixRepresentation[node - 1][i] == 1:
                 graph.matrixRepresentation[node - 1][i] = 0
                 graph.matrixRepresentation[i][node - 1] = 0
 
+    return graph
 
