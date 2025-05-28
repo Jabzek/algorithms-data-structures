@@ -2,12 +2,13 @@ import argparse
 from graph_create import create_graph
 
 
+
 def help_messages():
     print("Help \t\t Pokazuje dostępne komendy.")
     print("Print \t\t Wypisuje graf.")
     print("Euler \t\t Znajduje cykl Eulera w grafie.")
     print("Hamilton \t Znajduje cykl Hamiltona w grafie.")
-    print("Export \t Eksportuje graf do tickzpicture.")
+    print("Export \t\t Eksportuje graf do tickzpicture.")
     print("Exit \t\t Kończy program.")
 
 def main():
