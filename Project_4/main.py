@@ -2,11 +2,12 @@ import argparse
 from graph_create import create_graph
 
 
-def help_message():
+def help_messages():
     print("Help \t\t Pokazuje dostępne komendy.")
     print("Print \t\t Wypisuje graf.")
     print("Euler \t\t Znajduje cykl Eulera w grafie.")
-    print("Hamilton \t\t Znajduje cykl Hamiltona w grafie.")
+    print("Hamilton \t Znajduje cykl Hamiltona w grafie.")
+    print("Export \t Eksportuje graf do tickzpicture.")
     print("Exit \t\t Kończy program.")
 
 def main():
@@ -23,20 +24,23 @@ def main():
     else:
         print("Niepoprawna komenda. Użyj '--hamilton' lub '--non-hamilton'.")
 
-    print("Graf został utworzony. Wybierz operację do wykonania na grafie:")
-    help_message()
+    print("Graf został utworzony. Wybierz operację do wykonania na grafie:\n")
+    help_messages()
 
     while True:
         command = input("Wprowadź komendę: ").strip().lower()
+        print()
         match command:
             case "help":
-                help_message()
+                help_messages()
             case "print":
-                pass
+                graph.show_graph()
             case "euler":
-                pass
+                graph.eulerian_cycle()
             case "hamilton":
-                pass
+                graph.hamiltonian_cycle()
+            case "export":
+                graph.export_to_tickz()
             case "exit":
                 break
             case _:
