@@ -96,6 +96,7 @@ class Graph:
             end_time = time.time()
             elapsed_time = end_time - start_time
         print()
+        
         if measurements:
             return elapsed_time
         
