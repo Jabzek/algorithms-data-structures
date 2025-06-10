@@ -38,10 +38,8 @@ def measurements(numberofNodes, filename, hamiltonGraph):
                 writer.writerow(("Non-Hamiltonian", el, elapsedTimeHamilton))
 
 
-
-
-numberofNodes1 = [20, 30, 40, 50, 60, 70]
-numberofNodes2 = [20, 22, 24, 26, 28, 30]
+numberofNodes1 = [100, 200, 300, 400, 500, 600]
+numberofNodes2 = [12, 13, 14, 15, 16, 17]
 
 if __name__ == "__main__":
     programDir = os.path.dirname(__file__)
