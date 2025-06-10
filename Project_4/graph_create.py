@@ -29,11 +29,17 @@ def draw_nodes(numberofNodes):
     return nodesList
     
 
-def create_graph(hamiltonGraph): 
-    if hamiltonGraph:
-        numberofNodes, saturation = data_provide(hamiltonGraph=True)
+def create_graph(hamiltonGraph, numberofNodes, measurements): 
+    if not measurements: 
+        if hamiltonGraph:
+            numberofNodes, saturation = data_provide(hamiltonGraph=True)
+        else:
+            numberofNodes, saturation = data_provide(hamiltonGraph=False)
     else:
-        numberofNodes, saturation = data_provide(hamiltonGraph=False)
+        if hamiltonGraph:
+            saturation = 30
+        else:
+            saturation = 50
 
     graph = Graph(numberofNodes)
     

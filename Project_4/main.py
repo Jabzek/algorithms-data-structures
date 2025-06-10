@@ -17,9 +17,9 @@ def main():
     args = parser.parse_args()
 
     if args.hamilton:
-        graph = create_graph(hamiltonGraph=True)
+        graph = create_graph(hamiltonGraph=True, numberofNodes=None, measurements=False)
     elif args.non_hamilton:
-        graph = create_graph(hamiltonGraph=False)
+        graph = create_graph(hamiltonGraph=False, numberofNodes=None, measurements=False)
     else:
         print("Niepoprawna komenda. Użyj '--hamilton' lub '--non-hamilton'.")
 
