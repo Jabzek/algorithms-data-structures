@@ -48,14 +48,12 @@ def create_graph(hamiltonGraph, numberofNodes, measurements):
     nodesList = draw_nodes(numberofNodes)   # list of nodes in the graph which will create unique hamiltonian cycle
     countEdges = 0
     
-    # create hamiltonian cycle
     for i in range(len(nodesList)):       
         a = nodesList[i % numberofNodes]
         b = nodesList[(i + 1) % numberofNodes]
         graph.add_edges(a, b)
         countEdges += 1
 
-    # add random edges to the graph
     while countEdges < numberofEdges:       
         a = random.randint(1, numberofNodes)
         b = random.randint(1, numberofNodes)

@@ -35,7 +35,7 @@ def plot_create(hamiltonianTime, eulerianTime, numberofNodes1, nonhamiltonianTim
     alghorithmTime = (hamiltonianTime, eulerianTime, nonhamiltonianTime)
     titles = ("Finding Hamiltonian Cycle", "Finding Eulerian Cycle", "Finding Hamiltonian Cycle")
     labels = ("Hamiltonian Cycle Graph", "Eulerian Cycle", "Non-Hamiltonian Cycle Graph")
-    file_names = ("hamiltonian_cycle", "eulerian_cycle", "non_hamiltonian_cycle")
+    fileNames = ("hamiltonian_cycle", "eulerian_cycle", "non_hamiltonian_cycle")
 
     for el in range(3):
         plt.figure()
@@ -47,7 +47,7 @@ def plot_create(hamiltonianTime, eulerianTime, numberofNodes1, nonhamiltonianTim
         plt.grid()
         if el != 1:
             plt.yscale("log")
-        plt.savefig(os.path.join(dirname, f"{file_names[el]}.png"))
+        plt.savefig(os.path.join(dirname, f"{fileNames[el]}.png"))
         plt.close()
 
     print("Wykonano wykresy i zapisano do katalogu Plots")

@@ -35,7 +35,6 @@ class Graph:
         tikz.append("\\begin{document}")
         tikz.append("\\begin{tikzpicture}[scale=1, every node/.style={circle, draw}]")
 
-        # Calculate nodes coordinates
         positions = []
         for i in range(self.numberofNodes):
             angle = 2 * math.pi * i / self.numberofNodes
@@ -44,7 +43,6 @@ class Graph:
             positions.append((x, y))
             tikz.append(f"\\node (N{i+1}) at ({x:.2f},{y:.2f}) {{{i+1}}};")
 
-        # Add edges
         for i in range(self.numberofNodes):
             for j in range(i+1, self.numberofNodes):
                 if self.matrixRepresentation[i][j]:
@@ -53,7 +51,7 @@ class Graph:
         tikz.append("\\end{tikzpicture}")
         tikz.append("\\end{document}")
 
-        scriptDir = os.path.dirname(__file__) #Get the directory of the script
+        scriptDir = os.path.dirname(__file__) 
         outputDir = os.path.join(scriptDir, "graph_visualization")
         filename = os.path.join(outputDir, "graph_tikz.tex") 
         
@@ -93,7 +91,6 @@ class Graph:
         
 
     def eulerian_cycle(self):
-        # Check if all nodes have even degree
         for i in range(self.numberofNodes):
             degree = sum(self.matrixRepresentation[i])
             if degree % 2 != 0:
