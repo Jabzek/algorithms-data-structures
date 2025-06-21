@@ -1,5 +1,6 @@
 from data import data_provide, data_read
 from bruteforce import brute_force
+from dynamic_programming import dynamic_programming
 
 def main():
     while True:
@@ -44,7 +45,7 @@ def main():
     if algorithm == "brute force":
         brute_force(capacity, numberofItems, itemValues, itemWeights)
     elif algorithm == "dynamic programming":
-        pass
+        dynamic_programming(capacity, numberofItems, itemValues, itemWeights)
 
 if __name__ == "__main__":
     main()
