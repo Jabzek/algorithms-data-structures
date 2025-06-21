@@ -54,11 +54,15 @@ def data_read(filename):
     itemWeights = []
 
     with open(filename, "r") as file:
-        reader = csv.reader(file)
-        
+        reader = csv.reader(file)        
         for el in range(2):
             if el == 0:
-                capacity = float(reader[0])
+                capacity = float(next(reader)[0])
             else:
-                numberofItems = int(reader[1])
-        
+                numberofItems = int(next(reader)[0])
+
+        for row in reader:
+            itemValeus.append(float(row[0]))
+            itemWeights.append(float(row[1]))
+    
+    return capacity, numberofItems, itemValeus, itemWeights
