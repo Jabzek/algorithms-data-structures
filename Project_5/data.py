@@ -8,7 +8,7 @@ def data_provide(filename):
                 raise ValueError
             break
         except ValueError:
-            print("Pojemność musi być liczbą większą od zera. Spróbuj ponownie.")
+            print("Pojemność musi być liczbą naturalną. Spróbuj ponownie.")
     
     while True:
         try:
@@ -17,7 +17,7 @@ def data_provide(filename):
                 raise ValueError
             break
         except ValueError:
-            print("Liczba przedmiotów musi być większa od zera. Spróbuj ponownie.")
+            print("Liczba przedmiotów musi być liczbą naturalną. Spróbuj ponownie.")
 
     with open(filename, "w", newline='') as file:
         writer = csv.writer(file)
@@ -27,12 +27,12 @@ def data_provide(filename):
     for el in range(numberofItems):
         while True:
             try: 
-                itemWeight = float(input(f"Podaj wagę przedmiotu {el + 1}: "))
+                itemWeight = int(input(f"Podaj wagę przedmiotu {el + 1}: "))
                 if itemWeight <= 0:
                     raise ValueError
                 break
             except ValueError:
-                print("Waga musi być większa od zera. Spróbuj ponownie.")
+                print("Waga przedmiotu musi być liczbą naturalną. Spróbuj ponownie.")
 
         while True:
             try:
@@ -41,13 +41,13 @@ def data_provide(filename):
                     raise ValueError
                 break
             except ValueError:
-                print("Wartość musi być większa od zera. Spróbuj ponownie.")
+                print("Wartość przedmiotu musi być większa od zera. Spróbuj ponownie.")
 
         with open(filename, "a", newline='') as file:
             writer = csv.writer(file)
             writer.writerow((itemValue, itemWeight))
         
-    print(f"Dane zostały zapisane do pliku {filename}.")
+    print(f"Dane zostały zapisane do pliku {filename}.\n")
 
 def data_read(filename):
     itemValeus = []
@@ -57,12 +57,12 @@ def data_read(filename):
         reader = csv.reader(file)        
         for el in range(2):
             if el == 0:
-                capacity = float(next(reader)[0])
+                capacity = int(next(reader)[0])
             else:
                 numberofItems = int(next(reader)[0])
 
         for row in reader:
             itemValeus.append(float(row[0]))
-            itemWeights.append(float(row[1]))
+            itemWeights.append(int(row[1]))
     
     return capacity, numberofItems, itemValeus, itemWeights
