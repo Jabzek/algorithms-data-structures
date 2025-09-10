@@ -12,6 +12,7 @@ Projects were completed as part of the *A&DS* course at university during the se
 - `knapsack_problem_05` - Dynamic programming and brute force solution for the Knapsack problem
 
 ---
+
 ## How to run
 - Clone the repository:
     git clone https://github.com/Jabzek/algorithms-data-structures.git
@@ -20,6 +21,9 @@ Projects were completed as part of the *A&DS* course at university during the se
     cd sorting_algorithms_01
     python3 main.py
   # Attention - third and fourth project require to provide specific flag to run the code (check python3 main.py -h)
+
+---
+
 ## Authors
-# Jacek Szambelańczyk
-# Szymon Kuśmierczak
+Jacek Szambelańczyk
+Szymon Kuśmierczak
