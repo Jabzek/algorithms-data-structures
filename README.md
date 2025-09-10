@@ -14,7 +14,7 @@ Projects were completed as part of the *A&DS* course at university during the se
 ---
 
 ## How to run
-- Clone the repository:
+- Clone the repository:  
     git clone https://github.com/Jabzek/algorithms-data-structures.git  
     cd algorithms-data-structures
 - To run specific project when you have already cloned the repository (for example first project):  
