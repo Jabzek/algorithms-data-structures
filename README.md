@@ -20,6 +20,8 @@ Projects were completed as part of the *A&DS* course at university during the se
 - To run specific project when you have already cloned the repository (for example first project):  
     cd sorting_algorithms_01  
     python3 main.py
+
+
   Attention - third and fourth project require to provide specific flag to run the code (check python3 main.py -h)
 
 ---
